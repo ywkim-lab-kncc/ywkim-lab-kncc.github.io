@@ -1,0 +1,20 @@
+{#- Sequencing reads align to a reference; a variant column lights up; coverage builds. -#}
+{%- set g = illus.genomics -%}
+<svg class="illus illus-genomics" viewBox="0 0 320 200" role="img" aria-label="Animation: sequencing reads align to a reference genome and reveal a somatic variant.">
+  <g class="il-coverage">
+    {%- for b in g.coverage %}
+    <rect class="il-cov{% if b.hot %} il-hot{% endif %}" x="{{ b.x }}" y="{{ b.y }}" width="6" height="{{ b.h }}" style="--i:{{ b.i }}"/>
+    {%- endfor %}
+  </g>
+  <rect class="il-band" x="{{ g.variantX - 3 }}" y="56" width="14" height="104" rx="2"/>
+  {%- for r in g.reads %}
+  <g class="il-read" style="--i:{{ r.i }}">
+    <rect class="il-read-bar" x="{{ r.x }}" y="{{ r.y }}" width="{{ r.w }}" height="7" rx="2"/>
+    {%- if r.variant %}<rect class="il-snv" x="{{ g.variantX }}" y="{{ r.y }}" width="8" height="7"/>{% endif %}
+  </g>
+  {%- endfor %}
+  <line class="il-ref" x1="20" y1="172" x2="300" y2="172"/>
+  {%- for x in g.refTicks %}<line class="il-ref-tick" x1="{{ x }}" y1="168" x2="{{ x }}" y2="176"/>{% endfor %}
+  <text class="il-text" x="20" y="192">reference</text>
+  <text class="il-text il-text-accent" x="{{ g.variantX + 4 }}" y="192" text-anchor="middle">variant</text>
+</svg>

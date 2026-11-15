@@ -1,0 +1,13 @@
+{#- Single cells start scattered, then settle into clusters (UMAP-style embedding). -#}
+<svg class="illus illus-singlecell" viewBox="0 0 320 200" role="img" aria-label="Animation: individual cells are grouped into clusters by their gene expression.">
+  <line class="il-axis" x1="28" y1="182" x2="300" y2="182"/>
+  <line class="il-axis" x1="28" y1="182" x2="28" y2="16"/>
+  <text class="il-text" x="300" y="196" text-anchor="end">UMAP 1</text>
+  <text class="il-text" x="22" y="16" text-anchor="end" transform="rotate(-90 22 16)">UMAP 2</text>
+  {%- for k in illus.singlecell.centres %}
+  <ellipse class="il-hull il-c-{{ k.c }}" cx="{{ k.x }}" cy="{{ k.y }}" rx="{{ 48 if k.c == 'a' else 36 }}" ry="{{ 38 if k.c == 'a' else 29 }}"/>
+  {%- endfor %}
+  {%- for c in illus.singlecell.cells %}
+  <circle class="il-cell il-c-{{ c.c }}" cx="{{ c.cx }}" cy="{{ c.cy }}" r="4.2" style="--i:{{ c.i }}; --dx:{{ c.dx }}px; --dy:{{ c.dy }}px"/>
+  {%- endfor %}
+</svg>

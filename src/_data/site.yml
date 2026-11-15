@@ -1,0 +1,38 @@
+# ============================================================
+#  Site-wide settings — lab name, PI, contact, links
+#  Edit the values on the right of each colon. Keep the quotes.
+# ============================================================
+
+lab_name: "Youngwook Kim Lab"          # shown in the header and browser tab
+short_name: "Kim Lab"
+tagline: "Cancer genomics and mitochondrial biology, from sequencing data to the bench."
+institution: "National Cancer Center, Korea"
+department: "Department of Cancer Biomedical Science, Graduate School of Cancer Science and Policy"
+
+# Used in <meta> tags for search engines and link previews
+description: "The Youngwook Kim Lab at the National Cancer Center, Korea studies cancer genomics, mitochondrial biology and cancer metabolism with combined dry-lab and wet-lab approaches."
+
+# Full URL of the site once deployed (no trailing slash). Used for link previews only.
+url: "https://YOUR-ACCOUNT.github.io"
+
+contact:
+  email: "youngwkim@ncc.re.kr"
+  phone: ""                            # e.g. "+82-31-920-XXXX" — leave empty to hide
+  office: ""                           # e.g. "Research Institute, Room 0000" — leave empty to hide
+  address:
+    - "National Cancer Center"
+    - "323 Ilsan-ro, Ilsandong-gu, Goyang-si"
+    - "Gyeonggi-do 10408, Republic of Korea"
+  map_url: "https://maps.google.com/?q=National+Cancer+Center+Goyang"
+
+# External links shown in the footer. Delete a line to hide it.
+links:
+  - label: "NCC Graduate School"
+    url: "https://ncc-gcsp.ac.kr/"
+  # - label: "Google Scholar"
+  #   url: "https://scholar.google.com/citations?user=XXXX"
+  # - label: "GitHub"
+  #   url: "https://github.com/YOUR-LAB"
+
+# Set to the year the site starts showing in the footer copyright line
+since: 2026

@@ -1,0 +1,15 @@
+{#- A pipette moves across a well plate; wells fill with assay readouts. -#}
+<svg class="illus illus-functional" viewBox="0 0 320 200" role="img" aria-label="Animation: a pipette dispenses into a well plate and each well shows an assay result.">
+  <rect class="il-plate" x="50" y="72" width="220" height="112" rx="10"/>
+  {%- for w in illus.plate.wells %}
+  <circle class="il-well" cx="{{ w.cx }}" cy="{{ w.cy }}" r="9"/>
+  <circle class="il-fill il-col-{{ w.col }}" cx="{{ w.cx }}" cy="{{ w.cy }}" r="7" style="opacity:{{ w.v }}"/>
+  {%- endfor %}
+  <g class="il-pipette">
+    <g class="il-pipette-dip">
+      <rect class="il-pip-plunger" x="68" y="6" width="8" height="10" rx="2"/>
+      <rect class="il-pip-body" x="64" y="14" width="16" height="34" rx="4"/>
+      <path class="il-pip-tip" d="M66 48h12l-4.5 20h-3z"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+{#- Wet lab: cells appear and divide in a culture dish. -#}
+<svg class="illus illus-cells" viewBox="0 0 320 200" role="img" aria-label="Animation: cancer cells growing and dividing in a culture dish.">
+  <circle class="il-dish" cx="160" cy="112" r="80"/>
+  <circle class="il-dish-rim" cx="160" cy="112" r="72"/>
+  {%- for d in illus.dish.divisions %}
+  <g class="il-division" style="--i:{{ d.i }}; --dx:{{ d.dx }}px; --dy:{{ d.dy }}px">
+    <g class="il-daughter il-d1"><circle class="il-cellbody" cx="{{ d.x }}" cy="{{ d.y }}" r="9"/><circle class="il-nucleus" cx="{{ d.x }}" cy="{{ d.y }}" r="3.4"/></g>
+    <g class="il-daughter il-d2"><circle class="il-cellbody" cx="{{ d.x }}" cy="{{ d.y }}" r="9"/><circle class="il-nucleus" cx="{{ d.x }}" cy="{{ d.y }}" r="3.4"/></g>
+  </g>
+  {%- endfor %}
+</svg>

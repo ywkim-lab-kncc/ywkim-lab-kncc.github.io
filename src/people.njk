@@ -1,0 +1,126 @@
+---
+layout: base.njk
+title: People
+permalink: people.html
+---
+{%- import "macros.njk" as m -%}
+{%- set pi = members.pi -%}
+{%- set current = members.members | byStatus("current") -%}
+{%- set alumni = members.members | byStatus("alumni") -%}
+
+{%- set gp = members.group_photo -%}
+{%- if gp and gp.show !== false %}
+<section class="group-photo-section">
+  <div class="wrap">
+    <figure class="group-photo">
+      {%- if gp.file %}
+      <img src="assets/img/people/{{ gp.file }}" alt="{{ gp.alt }}" width="2000" height="1125">
+      {%- else %}
+      <div class="group-photo-placeholder" role="img" aria-label="Group photo coming soon">
+        <svg viewBox="0 0 420 150" aria-hidden="true">
+          {%- for f in [[60,58],[120,58],[180,58],[240,58],[300,58],[360,58],[90,96],[150,96],[210,96],[270,96],[330,96]] %}
+          <g class="gp-figure{% if f[1] > 60 %} gp-front{% endif %}">
+            <circle cx="{{ f[0] }}" cy="{{ f[1] - 18 }}" r="11"/>
+            <path d="M{{ f[0] - 22 }} {{ f[1] + 22 }} q0 -26 22 -26 q22 0 22 26 z"/>
+          </g>
+          {%- endfor %}
+        </svg>
+        <p>Group photo coming soon</p>
+      </div>
+      {%- endif %}
+      {%- if gp.caption %}<figcaption>{{ gp.caption }}</figcaption>{% endif %}
+    </figure>
+  </div>
+</section>
+{%- endif %}
+
+<div class="page-head page-head-after-photo">
+  <div class="wrap">
+    <h1>People</h1>
+  </div>
+</div>
+
+<section class="section members-section">
+  <div class="wrap">
+    <div class="filter" role="group" aria-label="Filter members by lab">
+      <button type="button" data-filter="all" aria-pressed="true">Everyone</button>
+      <button type="button" data-filter="dry" aria-pressed="false">Dry lab</button>
+      <button type="button" data-filter="wet" aria-pressed="false">Wet lab</button>
+    </div>
+
+    <div class="member-group pi-group">
+      <h2>Principal investigator</h2>
+      <article class="pi-card">
+        {{ m.avatar(pi, "avatar-pi") }}
+        <div class="pi-text">
+          <h3>{{ pi.name }}</h3>
+          <p class="pi-title">{{ pi.title }}<br>{{ pi.affiliation }}</p>
+          <p class="pi-bio">{{ pi.bio }}</p>
+          {%- if pi.education or pi.experience %}
+          <details class="pi-cv">
+            <summary>Education and experience</summary>
+            <div class="pi-cv-grid">
+              {%- if pi.education %}
+              <div>
+                <h4>Education</h4>
+                <ul>{% for e in pi.education %}<li>{{ e }}</li>{% endfor %}</ul>
+              </div>
+              {%- endif %}
+              {%- if pi.experience %}
+              <div>
+                <h4>Experience</h4>
+                <ul>{% for e in pi.experience %}<li>{{ e }}</li>{% endfor %}</ul>
+              </div>
+              {%- endif %}
+            </div>
+          </details>
+          {%- endif %}
+          <p class="pi-links">
+            <a href="mailto:{{ pi.email }}">{{ pi.email }}</a>
+            {%- for l in pi.links %}<a href="{{ l.url }}" rel="noopener">{{ l.label }}</a>{% endfor %}
+          </p>
+        </div>
+      </article>
+    </div>
+
+    {%- for g in current | groupMembers(roles) %}
+    <div class="member-group">
+      <h2>{{ g.label }} <span class="member-count">{{ g.items.length }}</span></h2>
+      <ul class="member-grid">
+        {%- for p in g.items %}
+        <li class="member" data-track="{{ p.track or 'both' }}">
+          {{ m.avatar(p) }}
+          <div>
+            <h3>{{ p.name }}{% if p.roleInfo.tag %} <span class="role-tag">{{ p.roleInfo.tag }}</span>{% endif %}</h3>
+            {{ m.trackBadge(p.track) }}
+            {%- if p.research %}<p class="member-research">{{ p.research }}</p>{% endif %}
+            {%- if p.email %}<p class="member-contact"><a href="mailto:{{ p.email }}">{{ p.email }}</a></p>{% endif %}
+          </div>
+        </li>
+        {%- endfor %}
+      </ul>
+    </div>
+    {%- endfor %}
+    <p class="filter-empty" hidden>No current members in this group.</p>
+  </div>
+</section>
+
+{%- if alumni.length %}
+<section class="section section-tinted">
+  <div class="wrap">
+    <h2>Alumni</h2>
+    <table class="alumni">
+      <thead><tr><th scope="col">Name</th><th scope="col">In the lab</th><th scope="col">Now</th></tr></thead>
+      <tbody>
+        {%- for a in alumni | sort(true, false, "left") %}
+        <tr>
+          <td>{{ a.name }}</td>
+          <td>{% for r in roles %}{% if r.key == a.role %}{{ r.one }}{% endif %}{% endfor %}{% if a.joined %}, {{ a.joined }}–{{ a.left }}{% endif %}</td>
+          <td>{{ a.now }}</td>
+        </tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{%- endif %}

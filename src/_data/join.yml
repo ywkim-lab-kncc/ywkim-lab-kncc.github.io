@@ -1,0 +1,29 @@
+# ============================================================
+#  JOIN US — open positions. Set open: false to hide a position
+#  without deleting it.
+# ============================================================
+
+intro: >-
+  We welcome students and researchers from both computational and experimental
+  backgrounds. Lab members are encouraged to work across the dry and wet lab.
+
+positions:
+  - title: "Graduate students (M.S. / Ph.D.)"
+    open: true
+    text: >-
+      Through the NCC Graduate School of Cancer Science and Policy. Backgrounds in
+      biology, bioinformatics, statistics, computer science or related fields.
+
+  - title: "Postdoctoral researchers"
+    open: true
+    text: >-
+      Candidates with experience in cancer genomics data analysis or in cell and
+      molecular biology.
+
+  - title: "Undergraduate interns"
+    open: false
+    text: "Short-term research internships during vacations."
+
+how_to_apply: >-
+  Email the PI with your CV, a short statement of research interests, and the
+  names of two references.

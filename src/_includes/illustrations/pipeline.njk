@@ -1,0 +1,17 @@
+{#- Dry lab: code runs, data flows into results. -#}
+<svg class="illus illus-pipeline" viewBox="0 0 320 200" role="img" aria-label="Animation: an analysis script runs and produces a chart of results.">
+  <rect class="il-panel" x="16" y="26" width="132" height="148" rx="8"/>
+  <circle class="il-dot" cx="30" cy="40" r="3"/><circle class="il-dot" cx="40" cy="40" r="3"/><circle class="il-dot" cx="50" cy="40" r="3"/>
+  {%- set lines = [[30,92],[42,70],[42,96],[30,60],[42,84],[42,52],[30,76]] %}
+  {%- for l in lines %}
+  <rect class="il-code" x="{{ l[0] }}" y="{{ 58 + loop.index0 * 15 }}" width="{{ l[1] }}" height="6" rx="3" style="--i:{{ loop.index0 }}"/>
+  {%- endfor %}
+  <path class="il-flow" d="M152 100 H178"/>
+  <circle class="il-packet" cx="152" cy="100" r="4"/>
+  <rect class="il-panel" x="182" y="26" width="122" height="148" rx="8"/>
+  <line class="il-axis" x1="198" y1="156" x2="292" y2="156"/>
+  {%- set bars = [44, 70, 34, 96, 58, 80] %}
+  {%- for h in bars %}
+  <rect class="il-bar{% if loop.index0 == 3 %} il-bar-hot{% endif %}" x="{{ 202 + loop.index0 * 15 }}" y="{{ 156 - h }}" width="10" height="{{ h }}" style="--i:{{ loop.index0 }}"/>
+  {%- endfor %}
+</svg>

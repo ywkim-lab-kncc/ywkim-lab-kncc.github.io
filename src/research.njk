@@ -1,0 +1,48 @@
+---
+layout: base.njk
+title: Research
+permalink: research.html
+---
+{%- import "macros.njk" as m -%}
+<div class="page-head">
+  <div class="wrap">
+    <h1>Research</h1>
+    <p class="lede">{{ research.intro }}</p>
+  </div>
+</div>
+
+<section class="section section-flush">
+  <div class="wrap">
+    <ul class="theme-features">
+      {%- for t in research.themes %}
+      <li class="theme-feature theme-{{ t.track }}">
+        <div class="theme-media theme-media-lg">{% set item = t %}{% include "media.njk" %}</div>
+        <div class="theme-feature-text">
+          {{ m.trackBadge(t.track) }}
+          <h2>{{ t.title }}</h2>
+          <p>{{ t.summary }}</p>
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section split">
+  <div class="wrap">
+    <h2 class="visually-hidden">How the two labs work</h2>
+    <div class="split-grid">
+      {%- for side in [["dry", research.dry_lab], ["wet", research.wet_lab]] %}
+      <div class="split-col split-{{ side[0] }} on-dark">
+        <div class="split-media">{% set item = side[1] %}{% include "media.njk" %}</div>
+        <h2>{{ side[1].heading }}</h2>
+        <p>{{ side[1].text }}</p>
+        {%- if side[1].tools %}
+        <ul class="tool-list">{% for t in side[1].tools %}<li>{{ t }}</li>{% endfor %}</ul>
+        {%- endif %}
+        <p class="split-themes">Themes: {% for t in research.themes %}{% if t.track == side[0] or t.track == "both" %}<span>{{ t.title }}</span>{% endif %}{% endfor %}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

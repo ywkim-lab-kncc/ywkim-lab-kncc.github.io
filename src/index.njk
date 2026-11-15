@@ -1,0 +1,111 @@
+---
+layout: base.njk
+permalink: index.html
+---
+{%- import "macros.njk" as m -%}
+{%- set labNames = members.members | labNames(members.pi) -%}
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <h1>{{ site.lab_name }}</h1>
+      <p class="hero-tagline">{{ site.tagline }}</p>
+      <p class="hero-meta">{{ site.department }}, {{ site.institution }}</p>
+      <p class="hero-actions">
+        <a class="button" href="research.html">Our research</a>
+        <a class="button button-quiet" href="join.html">Join the lab</a>
+      </p>
+    </div>
+
+    <figure class="mt-map">
+      <svg viewBox="0 0 400 400" role="img" aria-labelledby="mt-title">
+        <title id="mt-title">Map of the human mitochondrial genome showing its 13 protein-coding genes and two ribosomal RNA genes.</title>
+        <circle class="mt-backbone" cx="200" cy="200" r="{{ mtdna.rOut }}"/>
+        <circle class="mt-backbone mt-backbone-inner" cx="200" cy="200" r="{{ mtdna.rIn }}"/>
+        {%- for g in mtdna.segments %}
+        <path class="mt-gene mt-{{ g.kind }}" d="{{ g.d }}" style="--len: {{ g.len }}; --delay: {{ g.delay }}s"><title>{{ g.name }}</title></path>
+        {%- if g.showLabel %}
+        <text class="mt-label" x="{{ g.lx }}" y="{{ g.ly }}" text-anchor="middle" dominant-baseline="middle">{{ g.name }}</text>
+        {%- endif %}
+        {%- endfor %}
+        <text class="mt-centre" x="200" y="194" text-anchor="middle">16,569 bp</text>
+        <text class="mt-centre-sub" x="200" y="214" text-anchor="middle">human mtDNA</text>
+      </svg>
+      <figcaption>
+        <span class="key key-c1">Complex I</span>
+        <span class="key key-c3">III</span>
+        <span class="key key-c4">IV</span>
+        <span class="key key-c5">V</span>
+        <span class="key key-rrna">rRNA</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section split">
+  <div class="wrap">
+    <p class="lede">{{ research.intro }}</p>
+    <div class="split-grid">
+      {%- for side in [["dry", research.dry_lab], ["wet", research.wet_lab]] %}
+      <div class="split-col split-{{ side[0] }} on-dark">
+        <div class="split-media">{% set item = side[1] %}{% include "media.njk" %}</div>
+        <h2>{{ side[1].heading }}</h2>
+        <p>{{ side[1].text }}</p>
+        {%- if side[1].tools %}
+        <ul class="tool-list">{% for t in side[1].tools %}<li>{{ t }}</li>{% endfor %}</ul>
+        {%- endif %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Research themes</h2>
+      <a href="research.html">All research</a>
+    </div>
+    <ul class="theme-grid">
+      {%- for t in research.themes %}
+      <li class="theme-card theme-{{ t.track }}">
+        <div class="theme-media">{% set item = t %}{% include "media.njk" %}</div>
+        <div class="theme-card-body">
+          {{ m.trackBadge(t.track) }}
+          <h3>{{ t.title }}</h3>
+          <p>{{ t.summary }}</p>
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section-tinted">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Selected publications</h2>
+      <a href="publications.html">All publications</a>
+    </div>
+    <ol class="pub-list pub-list-home">
+      {%- for p in publications | groupByYear %}{% for item in p.items %}{% if item.selected %}
+      {{ m.pubItem(item, labNames) }}
+      {%- endif %}{% endfor %}{% endfor %}
+    </ol>
+  </div>
+</section>
+
+{%- set openPositions = [] %}
+{%- for p in join.positions %}{% if p.open %}{% set openPositions = (openPositions.push(p.title), openPositions) %}{% endif %}{% endfor %}
+<section class="join-cta">
+  <div class="wrap join-cta-inner">
+    <div>
+      <h2>Join the lab</h2>
+      <p>{{ join.intro }}</p>
+      {%- if openPositions.length %}
+      <p class="join-cta-open">Now recruiting: {{ openPositions | join(", ") }}</p>
+      {%- endif %}
+    </div>
+    <a class="button button-large" href="join.html">See open positions</a>
+  </div>
+</section>

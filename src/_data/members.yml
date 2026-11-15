@@ -1,0 +1,115 @@
+# ============================================================
+#  LAB MEMBERS
+# ------------------------------------------------------------
+#  ADD a member     → copy one block (from "- id:" to the end) and edit it.
+#  MEMBER LEAVES    → change   status: current   to   status: alumni
+#                     and fill in  left: / now:  (keeps history on the site)
+#  REMOVE entirely  → delete the whole block.
+#
+#  Fields
+#    id         unique, lowercase, no spaces (used for the photo file name)
+#    name       full name as it should appear
+#    role       one of: postdoc | researcher | phd | integrated | ms | intern   (see roles.yml)
+#               postdoc and researcher are listed together under "Researchers";
+#               postdocs get a "Postdoc" label automatically.
+#    track      one of: dry | wet | both     (Dry lab / Wet lab badge + filter)
+#    status     current | alumni
+#    photo      optional; file in src/assets/img/people/  (e.g. "jdoe.jpg")
+#               square image, about 600×600 px. Without a photo, initials are shown.
+#    pub_names  how the name appears in author lists, e.g. ["Lee J", "Lee JW"]
+#               → these names are bolded automatically on the Publications page
+#    joined / left   year (number)
+#    now        alumni only — current position, e.g. "Postdoc, Stanford University"
+# ============================================================
+
+# ---- Group photo (top of the People page) ---------------------
+#  1. Upload the photo to src/assets/img/people/  (e.g. "group-2026.jpg")
+#     Landscape JPG, about 2000 px wide, under 600 KB. It is shown uncropped.
+#  2. Write the file name below. Update caption when you take a new photo.
+#  Until a file is set, a "coming soon" placeholder is shown.
+#  To hide this section completely, set  show: false
+group_photo:
+  show: true
+  file: ""                       # e.g. "group-2026.jpg"
+  caption: ""                    # e.g. "The Kim Lab, spring 2026"
+  alt: "Members of the Youngwook Kim Lab"
+
+pi:
+  name: "Youngwook Kim, Ph.D."
+  title: "Associate Professor"   # ← please confirm current title
+  affiliation: "Department of Cancer Biomedical Science, National Cancer Center Graduate School of Cancer Science and Policy"
+  photo: ""                      # e.g. "pi.jpg" in src/assets/img/people/
+  email: "youngwkim@ncc.re.kr"
+  pub_names: ["Kim Y", "Kim YW"]
+  bio: >-
+    Youngwook Kim studies the genomics of human cancer, with a particular focus on
+    mitochondrial biology and cancer metabolism. His group combines statistical
+    analysis of large-scale sequencing data with functional experiments to understand
+    how genomic alterations shape tumor behavior.
+  education:
+    - "Ph.D., Molecular and Cellular Biology, Sungkyunkwan University"
+    - "B.S., Molecular Biology (minor in Physics), Seoul National University"
+  experience:
+    - "Samsung Genome Institute, Samsung Medical Center"
+    - "Samsung Advanced Institute for Health Sciences & Technology (SAIHST), Sungkyunkwan University"
+  links:
+    # - label: "Google Scholar"
+    #   url: "https://scholar.google.com/..."
+    # - label: "ORCID"
+    #   url: "https://orcid.org/0000-0000-0000-0000"
+
+members:
+  # ---- EXAMPLES: replace these with real lab members --------
+  - id: example-postdoc
+    name: "Researcher Name"
+    role: postdoc
+    track: dry
+    status: current
+    joined: 2025
+    photo: ""
+    pub_names: []
+    research: "Pan-cancer analysis of mitochondrial DNA variants"
+    email: ""
+
+  - id: example-researcher
+    name: "Researcher Name"
+    role: researcher
+    track: wet
+    status: current
+    joined: 2023
+    photo: ""
+    pub_names: []
+    research: "Patient-derived cancer models and sample processing"
+    email: ""
+
+  - id: example-phd
+    name: "Student Name"
+    role: phd
+    track: wet
+    status: current
+    joined: 2024
+    photo: ""
+    pub_names: []
+    research: "Functional validation of metabolic dependencies in cancer cell lines"
+    email: ""
+
+  - id: example-ms
+    name: "Student Name"
+    role: ms
+    track: both
+    status: current
+    joined: 2026
+    photo: ""
+    pub_names: []
+    research: "Single-cell transcriptomics of tumor samples"
+    email: ""
+
+  - id: example-alumnus
+    name: "Former Member"
+    role: ms
+    track: dry
+    status: alumni
+    joined: 2022
+    left: 2024
+    now: "Ph.D. student, Example University"
+    pub_names: []

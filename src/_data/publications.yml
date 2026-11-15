@@ -1,0 +1,101 @@
+# ============================================================
+#  PUBLICATIONS
+# ------------------------------------------------------------
+#  EASIEST: GitHub → Actions → "Add publication from PubMed" → Run workflow
+#           → type one or more PMIDs. The entry is filled in from PubMed automatically.
+#           Tick "Overwrite" to refresh an entry that is already listed.
+#  BY HAND: copy a block below and edit. Order does not matter —
+#           the site sorts by year automatically.
+#
+#  Fields
+#    title, authors (list, in order), journal, year       ← required
+#    volume, pages, doi, pmid                              ← optional
+#    type       article | review | preprint | book | conference   (default: article)
+#    selected   true → also shown on the home page and in "Selected"
+#    note       short label, e.g. "Cover article"
+#    code / data / pdf   optional URLs (GitHub repo, GEO accession, PDF)
+#  Author markers:  "Kim Y*" = equal contribution,  "Kim Y†" = corresponding author
+#  Lab members are bolded automatically (see pub_names in members.yml).
+#
+#  Seed list below: taken from the PI's NCC faculty page (ncc-gcsp.ac.kr).
+#  Entries marked "verify": run the PubMed action with these PMIDs and tick
+#  "Overwrite" to replace them with exact PubMed metadata.
+# ============================================================
+
+- title: "Analyses of non-coding somatic drivers in 2,658 cancer whole genomes"   # verify
+  authors: ["Rheinbay E", "PCAWG Consortium"]                                       # verify
+  journal: "Nature"
+  year: 2020
+  pmid: "32025015"
+  type: article
+  selected: true
+
+- title: "Comprehensive molecular characterization of mitochondrial genomes in human cancers"
+  authors: ["Yuan Y*", "Ju Y*", "Kim Y*", "Li J", "Wang Y", "Yoon C", "Yang Y", "Martincorena I", "Creighton C", "Weinstein J", "Xu Y", "Han L", "Kim H", "Nakagawa H", "Park K", "Campbell P", "Liang H"]
+  journal: "Nature Genetics"
+  year: 2020
+  pmid: "32024997"
+  type: article
+  selected: true
+
+- title: "Hormetic dose response to L-ascorbic acid as an anti-cancer drug in colorectal cancer cell lines according to SVCT-2 expression"
+  authors: ["Cho S", "Chae J", "Shin H", "Shin Y", "Song H", "Kim Y", "Yoo B", "Roh K", "Cho S", "Kil E", "Byun H", "Cho S", "Park S", "Lee S", "Yeom C"]
+  journal: "Scientific Reports"
+  year: 2018
+  pmid: "30054560"
+  type: article
+
+- title: "Imaging genotyping of functional signaling pathways in lung squamous cell carcinoma using a radiomics approach"
+  authors: ["Bak SH", "Park H", "Lee HY", "Kim Y", "Kim HL", "Jung SH", "Kim H", "Kim J", "Park K"]
+  journal: "Scientific Reports"
+  year: 2018
+  volume: "8(1)"
+  pages: "3284"
+  pmid: "29459639"
+  type: article
+
+- title: "Tumor-targeted delivery of paclitaxel using low density lipoprotein-mimetic solid lipid nanoparticles"
+  authors: ["Kim J*", "Kim Y*", "Kim J", "Lee J", "Bae K", "Min J", "Park T", "Lee J", "Nam Y", "Park K"]
+  journal: "Molecular Pharmaceutics"   # no PMID on source — add one
+  year: 2015
+  type: article
+
+- title: "Low-density lipoprotein-mimicking nanoparticles for tumor-targeted theranostic applications"
+  authors: ["Lee JY", "Kim JH", "Bae KH", "Oh MH", "Kim Y", "Kim JS", "Park TG", "Park K", "Lee JH", "Nam YS"]
+  journal: "Small"
+  year: 2015
+  volume: "11(2)"
+  pages: "222-231"
+  pmid: "25137631"
+  type: article
+
+- title: "Integrative and comparative genomic analysis of lung squamous cell carcinomas in East Asian patients"   # verify
+  authors: ["Kim Y", "Hammerman P", "Kim JG", "Yoon J", "Lee Y", "Sun J", "Wilkerson M", "Pedamallu C", "Cibulskis K", "Yoo Y", "Lawrence M"]   # list truncated on source — verify
+  journal: "Journal of Clinical Oncology"
+  year: 2014
+  pmid: "24323028"
+  type: article
+  selected: true
+
+- title: "Rapid detection of exon 2-deleted AIMP2 mutation as a potential biomarker for lung cancer by molecular beacons"
+  authors: ["Jo SM*", "Kim Y*", "Jeong YS", "Oh YH", "Park K", "Kim HS"]   # source lists "Hee Oh Y" — verify
+  journal: "Biosensors and Bioelectronics"
+  year: 2013
+  volume: "46"
+  pages: "142-149"
+  pmid: "23537880"
+  type: article
+
+- title: "The EGFR T790M mutation in acquired resistance to an irreversible second-generation EGFR inhibitor"
+  authors: ["Kim Y", "Ko J", "Cui Z", "Abolhoda A", "Ahn JS", "Ou SH", "Ahn MJ", "Park K"]
+  journal: "Molecular Cancer Therapeutics"
+  year: 2012
+  pmid: "22228822"
+  type: article
+
+- title: "Influence of nano-carrier architecture on in vitro siRNA delivery performance and in vivo biodistribution: polyplexes vs. micelles"   # verify
+  authors: ["Gary DJ", "Lee H", "Sharma R", "Lee JS", "Kim Y", "Cui ZY", "Jia D", "Bowman VD", "Chipman PR"]   # verify
+  journal: "ACS Nano"
+  year: 2011
+  pmid: "21456626"
+  type: article

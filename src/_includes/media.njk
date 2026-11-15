@@ -1,0 +1,9 @@
+{#- Shows a research visual. Priority: video → image → built-in animated illustration.
+    Usage: {% set item = theme %}{% include "media.njk" %} -#}
+{%- if item.video -%}
+<video class="media-file" src="assets/img/research/{{ item.video }}" autoplay muted loop playsinline aria-label="{{ item.title or item.heading }}"></video>
+{%- elif item.image -%}
+<img class="media-file" src="assets/img/research/{{ item.image }}" alt="{{ item.alt or '' }}" loading="lazy">
+{%- elif item.illustration -%}
+{% include "illustrations/" + item.illustration + ".njk" %}
+{%- endif -%}

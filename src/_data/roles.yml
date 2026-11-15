@@ -1,0 +1,35 @@
+# ============================================================
+#  Positions and how they are grouped on the People page.
+#  Each member's `role:` in members.yml must be one of the keys below.
+#
+#  group = heading the member is listed under. Roles with the same group
+#          appear together in one list, in the order written here.
+#  one   = singular name (used in the alumni table)
+#  tag   = optional small label shown next to the name (e.g. "Postdoc")
+#  To add a new kind of position, add an entry and use its key as `role:`.
+# ============================================================
+
+- key: postdoc
+  group: "Researchers"
+  one: "Postdoctoral researcher"
+  tag: "Postdoc"
+
+- key: researcher          # research professors, research scientists, research staff…
+  group: "Researchers"
+  one: "Researcher"
+
+- key: phd
+  group: "Ph.D. students"
+  one: "Ph.D. student"
+
+- key: integrated
+  group: "Integrated M.S.–Ph.D. students"
+  one: "Integrated M.S.–Ph.D. student"
+
+- key: ms
+  group: "M.S. students"
+  one: "M.S. student"
+
+- key: intern
+  group: "Interns"
+  one: "Intern"

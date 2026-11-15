@@ -1,0 +1,70 @@
+{%- set nav = [
+  { url: "/index.html", href: "index.html", label: "Home" },
+  { url: "/research.html", href: "research.html", label: "Research" },
+  { url: "/people.html", href: "people.html", label: "People" },
+  { url: "/publications.html", href: "publications.html", label: "Publications" },
+  { url: "/join.html", href: "join.html", label: "Join us" }
+] -%}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.classList.remove("no-js")</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} | {% endif %}{{ site.lab_name }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}{{ site.lab_name }}">
+  <meta property="og:description" content="{{ site.description }}">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..800;1,400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="40 4 14 4 7 100"/><circle cx="16" cy="16" r="5.5" fill="none" stroke="var(--eosin)" stroke-width="3" stroke-dasharray="12 4 100"/></svg>
+        <span class="brand-text">
+          <span class="brand-name">{{ site.lab_name }}</span>
+          <span class="brand-inst">{{ site.institution }}</span>
+        </span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          {%- for item in nav %}
+          <li><a href="{{ item.href }}"{% if page.url == item.url or (item.url == "/index.html" and page.url == "/") %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <p class="footer-name">{{ site.lab_name }}</p>
+        <p>{{ site.department }}</p>
+        <address>{% for line in site.contact.address %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</address>
+      </div>
+      <div>
+        <p><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
+        {% if site.contact.phone %}<p>{{ site.contact.phone }}</p>{% endif %}
+        <ul class="footer-links">
+          {%- for l in site.links %}<li><a href="{{ l.url }}" rel="noopener">{{ l.label }}</a></li>{% endfor %}
+        </ul>
+      </div>
+      <p class="footer-copy">© {{ site.since }}{% if build.year > site.since %}–{{ build.year }}{% endif %} {{ site.lab_name }}. Last updated {{ build.date }}.</p>
+    </div>
+  </footer>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

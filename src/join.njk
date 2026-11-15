@@ -1,0 +1,41 @@
+---
+layout: base.njk
+title: Join us
+permalink: join.html
+---
+<div class="page-head">
+  <div class="wrap">
+    <h1>Join us</h1>
+    <p class="lede">{{ join.intro }}</p>
+  </div>
+</div>
+
+<section class="section section-flush">
+  <div class="wrap two-col">
+    <div>
+      <h2>Open positions</h2>
+      <ul class="positions">
+        {%- for p in join.positions %}{% if p.open %}
+        <li>
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.text }}</p>
+        </li>
+        {%- endif %}{% endfor %}
+      </ul>
+      <h2>How to apply</h2>
+      <p>{{ join.how_to_apply }}</p>
+      <p><a class="button" href="mailto:{{ site.contact.email }}?subject=Application%20to%20{{ site.short_name | urlencode }}">Email {{ site.contact.email }}</a></p>
+    </div>
+    <div class="contact-card">
+      <h2>Contact</h2>
+      <address>
+        {{ members.pi.name }}<br>
+        {%- if site.contact.office %}{{ site.contact.office }}<br>{% endif %}
+        {%- for line in site.contact.address %}{{ line }}<br>{% endfor %}
+      </address>
+      <p><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
+      {%- if site.contact.phone %}<p>{{ site.contact.phone }}</p>{% endif %}
+      <p><a href="{{ site.contact.map_url }}" rel="noopener">Open in Google Maps</a></p>
+    </div>
+  </div>
+</section>

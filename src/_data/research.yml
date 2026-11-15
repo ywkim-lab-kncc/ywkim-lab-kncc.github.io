@@ -1,0 +1,79 @@
+# ============================================================
+#  RESEARCH — shown on the Research page and summarized on the home page.
+#  DRAFT TEXT based on the PI's published research interests.
+#  Please have the PI review and rewrite in the lab's own words.
+#
+#  track: dry | wet | both   → colors the theme and lists it under Dry/Wet lab
+#
+#  VISUALS (each theme and the Dry/Wet lab blocks show one moving picture)
+#    illustration: built-in animation. Choose one of:
+#        genomics | mito | singlecell | functional | pipeline | cells
+#    video: your own looping clip, e.g. "confocal.mp4"  (overrides illustration)
+#    image: your own picture or GIF, e.g. "lab.jpg"      (overrides illustration)
+#    → put video/image files in src/assets/img/research/
+#      Video tips: MP4 (H.264), no sound, 5–15 s, under 3 MB, 16:10 ratio.
+# ============================================================
+
+intro: >-
+  We study how genomic alterations drive human cancer. Our dry lab analyzes
+  large-scale sequencing data to find candidate drivers and vulnerabilities;
+  our wet lab tests them in cellular models. Each side sets the questions the
+  other answers.
+
+themes:
+  - title: "Cancer genomics"
+    track: dry
+    summary: >-
+      Statistical analysis of whole-genome, exome and transcriptome data from
+      large patient cohorts to identify somatic alterations that shape tumor
+      development and treatment response.
+    illustration: genomics
+    image: ""
+
+  - title: "Mitochondrial genomes and cancer metabolism"
+    track: both
+    summary: >-
+      Characterizing somatic variation in the mitochondrial genome across human
+      cancers and asking how it rewires cellular metabolism.
+    illustration: mito
+    image: ""
+
+  - title: "Single-cell biology"
+    track: both
+    summary: >-
+      Resolving tumor heterogeneity at single-cell resolution to follow how
+      individual cancer cell populations differ in state and fate.
+    illustration: singlecell
+    image: ""
+
+  - title: "Functional genomics"
+    track: wet
+    summary: >-
+      Experimental validation of genomic findings in cancer cell models, linking
+      candidate alterations to measurable phenotypes.
+    illustration: functional
+    image: ""
+
+dry_lab:
+  heading: "Dry lab"
+  illustration: pipeline
+  text: >-
+    Computational analysis of cancer genomes: variant discovery, statistical
+    modeling of large cohorts and single-cell data analysis.
+  tools:            # optional short list; delete lines you don't want to show
+    - "Whole-genome and exome analysis"
+    - "Mitochondrial DNA variant calling"
+    - "Single-cell transcriptomics"
+    - "Statistical modeling of large cohorts"
+
+wet_lab:
+  heading: "Wet lab"
+  illustration: cells
+  text: >-
+    Cell-based experiments that test hypotheses generated from genomic data and
+    measure their effects on cancer cell behavior and metabolism.
+  tools:
+    - "Cancer cell line models"
+    - "Gene perturbation"
+    - "Metabolic assays"
+    - "Sample preparation for sequencing"

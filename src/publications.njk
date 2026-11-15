@@ -1,0 +1,38 @@
+---
+layout: base.njk
+title: Publications
+permalink: publications.html
+---
+{%- import "macros.njk" as m -%}
+{%- set labNames = members.members | labNames(members.pi) -%}
+<div class="page-head">
+  <div class="wrap">
+    <h1>Publications</h1>
+    <p class="page-note">Lab members are shown in bold. * Equal contribution, † corresponding author.</p>
+  </div>
+</div>
+
+<section class="section section-flush">
+  <div class="wrap">
+    <div class="pub-tools">
+      <label class="search">
+        <span class="visually-hidden">Search publications</span>
+        <input type="search" id="pub-search" placeholder="Search by title, author, journal or year" autocomplete="off">
+      </label>
+      <label class="check"><input type="checkbox" id="pub-selected"> Selected only</label>
+      <p class="pub-count" id="pub-count" aria-live="polite">{{ publications.length }} publications</p>
+    </div>
+
+    {%- for g in publications | groupByYear %}
+    <section class="pub-year">
+      <h2>{{ g.year }}</h2>
+      <ol class="pub-list">
+        {%- for p in g.items %}
+        {{ m.pubItem(p, labNames) }}
+        {%- endfor %}
+      </ol>
+    </section>
+    {%- endfor %}
+    <p class="filter-empty" id="pub-empty" hidden>No publications match. Clear the search to see all.</p>
+  </div>
+</section>
