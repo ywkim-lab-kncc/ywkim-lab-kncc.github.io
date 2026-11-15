@@ -1,0 +1,50 @@
+# Actions tab → "Add publication from PubMed" → Run workflow → enter PMIDs.
+# The entries are filled in from PubMed, committed to main, and the site redeploys.
+name: Add publication from PubMed
+
+on:
+  workflow_dispatch:
+    inputs:
+      pmids:
+        description: "PubMed ID(s), separated by commas, e.g. 32024997, 32025015"
+        required: true
+      replace:
+        description: "Overwrite if the PMID is already listed (refresh metadata)"
+        type: boolean
+        default: false
+      selected:
+        description: "Mark as selected publication (shown on the home page)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch from PubMed and add to publications.yml
+        env:
+          PMIDS: ${{ inputs.pmids }}
+          SELECTED: ${{ inputs.selected && '--selected' || '' }}
+          REPLACE: ${{ inputs.replace && '--replace' || '' }}
+        run: python3 scripts/add_publication.py $SELECTED $REPLACE "$PMIDS"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci && npm run check
+      - name: Commit
+        env:
+          PMIDS: ${{ inputs.pmids }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/_data/publications.yml
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "Add publication(s): $PMIDS"
+          git push
