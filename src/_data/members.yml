@@ -97,7 +97,7 @@ members:
   - id: hmahn
     name: "Hyung-Min Ahn"
     role: researcher
-    track: both
+    track: dry
     status: current
     joined: 2025
     photo: ""
