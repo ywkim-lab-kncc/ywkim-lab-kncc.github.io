@@ -94,6 +94,17 @@ members:
     research: "AI-driven immunogenicity prediction, drug discovery, and single-cell analysis"
     email: "samkym9799@gmail.com"
 
+  - id: hmahn
+    name: "Hyung-Min Ahn"
+    role: researcher
+    track: both
+    status: current
+    joined: 2025
+    photo: ""
+    pub_names: ["Ahn HM"]
+    research: "Evolution of acquired resistance in cancer and functional genomics of mitochondrial DNA"
+    email: "bromynn@ncc.re.kr"
+
   - id: ssraj
     name: "Sreeja Sundara Raj"
     role: phd
