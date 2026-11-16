@@ -72,6 +72,7 @@ if (pubs) {
       if (!p?.journal) err("publications.yml", `${where}: journal 이 없습니다.`);
       if (p?.year !== undefined && !/^\d{4}$/.test(String(p.year))) err("publications.yml", `${where}: year 는 4자리 숫자여야 합니다.`);
       if (!p?.year) warn("publications.yml", `${where}: year 가 없어 "In press" 로 표시됩니다.`);
+      if (p?.unbold && !Array.isArray(p.unbold)) err("publications.yml", `${where}: unbold 는 ["Kim H"] 처럼 목록이어야 합니다.`);
       if (p?.pmid) {
         const k = String(p.pmid);
         if (pmids.has(k)) err("publications.yml", `${where}: PMID ${k} 가 #${pmids.get(k)} 와 중복됩니다.`);
