@@ -312,6 +312,19 @@ address { font-style: normal; }
 .contact-card { background: var(--surface); border: 1px solid var(--line); padding: clamp(1.5rem, 3vw, 2rem); align-self: start; }
 .contact-card address { margin-bottom: 1rem; }
 
+/* Copy-to-clipboard button next to email addresses */
+.email-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.copy-btn { position: relative; display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--muted); cursor: pointer; flex: none; }
+.button + .copy-btn { width: 2.75rem; height: 2.75rem; }
+.copy-btn:hover { color: var(--navy); border-color: var(--navy); }
+.copy-btn svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; grid-area: 1 / 1; }
+.copy-btn .check-icon { display: none; }
+.copy-btn.copied { color: #2f6f4f; border-color: #2f6f4f; }
+.copy-btn.copied .copy-icon { display: none; }
+.copy-btn.copied .check-icon { display: block; }
+.copy-msg { position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%); background: var(--ink); color: #fff; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 3px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.15s; }
+.copy-btn.copied .copy-msg { opacity: 1; }
+
 /* ---------- Footer ---------- */
 .site-footer { background: var(--night); color: #c3ccd9; padding: 3rem 0 2rem; font-size: var(--step--1); }
 .site-footer a { color: #fff; }
