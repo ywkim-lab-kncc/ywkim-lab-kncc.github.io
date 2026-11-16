@@ -304,26 +304,44 @@ address { font-style: normal; }
 .join-cta .button:hover { background: var(--night); color: #fff; }
 
 /* ---------- Join ---------- */
-.positions { list-style: none; padding: 0; margin: 0 0 2rem; }
-.positions li { padding: 1rem 0 1rem 1rem; border-left: 3px solid var(--navy); margin-bottom: 1rem; background: var(--surface); }
-.positions li:nth-child(even) { border-left-color: var(--wine); }
-.positions h3 { font-size: var(--step-0); margin-bottom: 0.25rem; }
-.positions p { margin: 0; color: var(--muted); padding-right: 1rem; }
-.contact-card { background: var(--surface); border: 1px solid var(--line); padding: clamp(1.5rem, 3vw, 2rem); align-self: start; }
-.contact-card address { margin-bottom: 1rem; }
+/* Open positions: a row of cards */
+.positions { list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: var(--gap); }
+.positions li { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--navy); padding: 1.5rem 1.5rem 1.6rem; }
+.positions li:nth-child(even) { border-top-color: var(--wine); }
+.positions h3 { font-size: var(--step-1); margin-bottom: 0.5rem; }
+.positions p { margin: 0; color: var(--muted); }
 
-/* Copy-to-clipboard button next to email addresses */
-.email-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
-.copy-btn { position: relative; display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--muted); cursor: pointer; flex: none; }
-.button + .copy-btn { width: 2.75rem; height: 2.75rem; }
-.copy-btn:hover { color: var(--navy); border-color: var(--navy); }
-.copy-btn svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; grid-area: 1 / 1; }
+/* How to apply: navy panel, text left, contact right */
+.apply-panel { background: var(--navy); color: #fff; padding: clamp(1.75rem, 4vw, 2.75rem); display: grid; grid-template-columns: minmax(0, 1.2fr) auto; gap: var(--gap) calc(var(--gap) * 1.5); align-items: center; margin-top: clamp(1rem, 2vw, 1.5rem); }
+.apply-text h2 { font-size: var(--step-3); font-weight: 750; letter-spacing: -0.03em; margin-bottom: 0.4em; }
+.apply-text p { margin: 0; color: rgba(255,255,255,0.86); font-size: var(--step-1); line-height: 1.5; max-width: 30em; }
+.apply-name { font-weight: 650; margin: 0 0 0.6rem; color: #fff; }
+.apply-phone { margin: 0.6rem 0 0; color: rgba(255,255,255,0.8); }
+@media (max-width: 52rem) { .apply-panel { grid-template-columns: 1fr; } }
+
+/* Email button with an attached copy button (white on the navy panel) */
+.email-combo { display: inline-flex; align-items: stretch; background: #fff; border-radius: var(--radius); box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+.email-combo-link { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.2rem; color: var(--navy); text-decoration: none; font-weight: 650; border-radius: var(--radius) 0 0 var(--radius); }
+.email-combo-link:hover { color: var(--navy); background: var(--navy-soft); }
+.email-combo-link svg { width: 1.2rem; height: 1.2rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; flex: none; }
+.copy-btn { position: relative; display: inline-grid; place-items: center; width: 3.1rem; padding: 0; border: 0; border-left: 1px solid var(--line); border-radius: 0 var(--radius) var(--radius) 0; background: transparent; color: var(--navy); cursor: pointer; }
+.copy-btn:hover { background: var(--navy-soft); }
+.copy-btn svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; grid-area: 1 / 1; }
 .copy-btn .check-icon { display: none; }
-.copy-btn.copied { color: #2f6f4f; border-color: #2f6f4f; }
+.copy-btn.copied { background: #2f6f4f; color: #fff; }
 .copy-btn.copied .copy-icon { display: none; }
 .copy-btn.copied .check-icon { display: block; }
 .copy-msg { position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%); background: var(--ink); color: #fff; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 3px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 0.15s; }
 .copy-btn.copied .copy-msg { opacity: 1; }
+@media (max-width: 30rem) { .email-combo-link { font-size: var(--step--1); padding: 0.75rem 0.85rem; } }
+
+/* Location: address left, wide map right */
+.location { display: grid; grid-template-columns: minmax(17rem, 1fr) minmax(0, 2fr); gap: calc(var(--gap) * 1.5); align-items: start; }
+.location-text address { line-height: 1.7; margin-bottom: 1rem; }
+.location-section { padding-top: clamp(2.5rem, 5vw, 3.5rem); }
+.map-frame { aspect-ratio: 16 / 9; background: var(--panel); border: 1px solid var(--line); }
+.map-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+@media (max-width: 52rem) { .location { grid-template-columns: 1fr; } .map-frame { aspect-ratio: 4 / 3; } }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--night); color: #c3ccd9; padding: 3rem 0 2rem; font-size: var(--step--1); }
