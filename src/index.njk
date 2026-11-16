@@ -84,13 +84,14 @@ permalink: index.html
 <section class="section section-tinted">
   <div class="wrap">
     <div class="section-head">
-      <h2>Publications</h2>
-      <a href="publications.html">Search publications</a>
+      <h2>Recent publications</h2>
+      <a href="publications.html">All publications</a>
     </div>
+    {#- Number of newest papers shown on the home page: change 5 below -#}
     <ol class="pub-list pub-list-home">
-      {%- for p in publications | groupByYear %}{% for item in p.items %}
+      {%- for item in publications | sort(true, false, "year") | limit(5) %}
       {{ m.pubItem(item, labNames) }}
-      {%- endfor %}{% endfor %}
+      {%- endfor %}
     </ol>
   </div>
 </section>
