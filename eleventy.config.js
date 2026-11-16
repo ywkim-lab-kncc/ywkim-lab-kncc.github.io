@@ -14,31 +14,47 @@ export default function (eleventyConfig) {
 
   // ---- Filters -----------------------------------------------------------
 
-  // Bold every author whose citation name matches a lab member's `pub_names`.
+  // Bold lab members in author lists.
+  // A member's name is bolded only in papers from the year they joined the lab onward
+  // (so a common name like "Kim H" is not bolded in older, unrelated papers).
+  // A paper can also list names to never bold with `unbold: ["Kim H"]`.
   // Markers like * (equal contribution) and † (corresponding) are kept but ignored when matching.
-  eleventyConfig.addFilter("authorList", (authors, labNames, maxAuthors = 15) => {
+  eleventyConfig.addFilter("authorList", (authors, labNames, year, unbold, maxAuthors = 15) => {
     if (!Array.isArray(authors)) return "";
-    const names = new Set((labNames || []).map((n) => n.trim().toLowerCase()));
-    const clean = (a) => a.replace(/[*†#‡]/g, "").trim().toLowerCase();
+    const clean = (a) => String(a).replace(/[*†#‡]/g, "").trim().toLowerCase();
+    const since = new Map();                    // name → first year it counts (null = always)
+    for (const { name, from } of labNames || []) {
+      const k = clean(name);
+      if (!since.has(k) || from === null || (since.get(k) !== null && from < since.get(k))) since.set(k, from);
+    }
+    const skip = new Set((unbold || []).map(clean));
+    const y = Number(year);
+    const isLab = (a) => {
+      const k = clean(a);
+      if (!since.has(k) || skip.has(k)) return false;
+      const from = since.get(k);
+      return from === null || !y || y >= from;
+    };
     let list = authors;
     let truncated = false;
     if (authors.length > maxAuthors) {
       // keep first authors + any lab members further down
       const head = authors.slice(0, maxAuthors - 3);
-      const labLater = authors.slice(maxAuthors - 3).filter((a) => names.has(clean(a)));
+      const labLater = authors.slice(maxAuthors - 3).filter(isLab);
       list = [...head, ...labLater];
       truncated = true;
     }
     const html = list
-      .map((a) => (names.has(clean(a)) ? `<strong>${escapeHtml(a)}</strong>` : escapeHtml(a)))
+      .map((a) => (isLab(a) ? `<strong>${escapeHtml(a)}</strong>` : escapeHtml(a)))
       .join(", ");
     return truncated ? `${html}, et al.` : html;
   });
 
-  // All citation names of current members, alumni and the PI
+  // Citation names of the PI (always) and of members/alumni (from the year they joined)
   eleventyConfig.addFilter("labNames", (members, pi) => {
-    const out = [...(pi?.pub_names || [])];
-    for (const m of members || []) out.push(...(m.pub_names || []));
+    const out = (pi?.pub_names || []).map((name) => ({ name, from: null }));
+    for (const m of members || [])
+      for (const name of m.pub_names || []) out.push({ name, from: m.joined ? Number(m.joined) : null });
     return out;
   });
 
