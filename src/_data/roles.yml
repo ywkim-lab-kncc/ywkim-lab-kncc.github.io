@@ -9,6 +9,11 @@
 #  To add a new kind of position, add an entry and use its key as `role:`.
 # ============================================================
 
+- key: assistant-professor   # e.g. research assistant professors in the lab (choose "Researcher" in the form)
+  group: "Researchers"
+  one: "Assistant Professor"
+  tag: "Assistant Professor"
+
 - key: postdoc
   group: "Researchers"
   one: "Postdoctoral researcher"

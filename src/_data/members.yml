@@ -61,6 +61,17 @@ pi:
 
 members:
   # Entries below come from the member profile form (Google Forms).
+  - id: jkhanal
+    name: "Jhabindra Khanal"
+    role: assistant-professor
+    track: dry
+    status: current
+    joined: 2023
+    photo: ""
+    pub_names: ["Khanal J"]
+    research: "Bioinformatics, deep learning, and cancer genomics"
+    email: ""
+
   - id: hdkim
     name: "Hyondeog Kim"
     role: postdoc
