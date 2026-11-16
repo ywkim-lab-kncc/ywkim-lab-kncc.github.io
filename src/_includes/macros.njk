@@ -21,7 +21,7 @@
     {%- elif p.pmid %}<a href="https://pubmed.ncbi.nlm.nih.gov/{{ p.pmid }}/" rel="noopener">{{ p.title }}</a>
     {%- else %}{{ p.title }}{% endif -%}
   </p>
-  <p class="pub-authors">{{ p.authors | authorList(labNames) | safe }}</p>
+  <p class="pub-authors">{{ p.authors | authorList(labNames, p.year, p.unbold) | safe }}</p>
   <p class="pub-venue">
     <em>{{ p.journal }}</em> {{ p.year }}{% if p.volume %}; {{ p.volume }}{% endif %}{% if p.pages %}: {{ p.pages }}{% endif %}
     {%- if p.type and p.type != "article" %} <span class="pub-type">{{ p.type }}</span>{% endif %}
