@@ -113,13 +113,15 @@ export default function (eleventyConfig) {
     return dt.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
   });
 
-  eleventyConfig.addFilter("initials", (name) =>
-    String(name || "")
-      .split(/[\s-]+/)
-      .filter(Boolean)
-      .map((w) => w[0].toUpperCase())
-      .slice(0, 2)
-      .join(""));
+  // Initials shown when there is no photo: first letter of the first and last name.
+  // "Hyung-Min Ahn" → "HA", "Youngwook Kim, Ph.D." → "YK" (anything after a comma is ignored)
+  eleventyConfig.addFilter("initials", (name) => {
+    const words = String(name || "").split(",")[0].trim().split(/\s+/).filter(Boolean);
+    if (!words.length) return "";
+    const first = words[0][0];
+    const last = words.length > 1 ? words[words.length - 1][0] : "";
+    return (first + last).toUpperCase();
+  });
 
   // Text the Publications search looks through. Lab members are also findable by
   // their full name (e.g. "hyondeog"), not only by the citation form ("Kim H").
