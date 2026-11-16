@@ -19,22 +19,40 @@ export default function (eleventyConfig) {
   // (so a common name like "Kim H" is not bolded in older, unrelated papers).
   // A paper can also list names to never bold with `unbold: ["Kim H"]`.
   // Markers like * (equal contribution) and † (corresponding) are kept but ignored when matching.
+  // Shared rule: is author `a` a lab member for a paper published in `year`?
+  // A member counts from the year they joined; the PI always counts; `unbold` names never count.
+  const cleanName = (a) => String(a).replace(/[*†#‡]/g, "").trim().toLowerCase();
+  function labMatcher(labNames, year, unbold) {
+    const since = new Map();                    // citation name → first year it counts (null = always)
+    const full = new Map();                     // citation name → full names (for search)
+    for (const { name, from, fullName } of labNames || []) {
+      const k = cleanName(name);
+      if (!since.has(k) || from === null || (since.get(k) !== null && from < since.get(k))) since.set(k, from);
+      if (fullName) full.set(k, [...(full.get(k) || []), { fullName, from }]);
+    }
+    const skip = new Set((unbold || []).map(cleanName));
+    const y = Number(year);
+    const counts = (from) => from === null || !y || y >= from;
+    return {
+      isLab: (a) => {
+        const k = cleanName(a);
+        return since.has(k) && !skip.has(k) && counts(since.get(k));
+      },
+      fullNames: (a) => {
+        const k = cleanName(a);
+        if (skip.has(k)) return [];
+        const list = full.get(k) || [];
+        // If the PI shares this citation name (e.g. "Kim Y"), only the PI is meant —
+        // otherwise a search for another member would also find all of the PI's papers.
+        const pi = list.filter((f) => f.from === null);
+        return (pi.length ? pi : list.filter((f) => counts(f.from))).map((f) => f.fullName);
+      },
+    };
+  }
+
   eleventyConfig.addFilter("authorList", (authors, labNames, year, unbold, maxAuthors = 15) => {
     if (!Array.isArray(authors)) return "";
-    const clean = (a) => String(a).replace(/[*†#‡]/g, "").trim().toLowerCase();
-    const since = new Map();                    // name → first year it counts (null = always)
-    for (const { name, from } of labNames || []) {
-      const k = clean(name);
-      if (!since.has(k) || from === null || (since.get(k) !== null && from < since.get(k))) since.set(k, from);
-    }
-    const skip = new Set((unbold || []).map(clean));
-    const y = Number(year);
-    const isLab = (a) => {
-      const k = clean(a);
-      if (!since.has(k) || skip.has(k)) return false;
-      const from = since.get(k);
-      return from === null || !y || y >= from;
-    };
+    const { isLab } = labMatcher(labNames, year, unbold);
     let list = authors;
     let truncated = false;
     if (authors.length > maxAuthors) {
@@ -52,9 +70,10 @@ export default function (eleventyConfig) {
 
   // Citation names of the PI (always) and of members/alumni (from the year they joined)
   eleventyConfig.addFilter("labNames", (members, pi) => {
-    const out = (pi?.pub_names || []).map((name) => ({ name, from: null }));
+    const out = (pi?.pub_names || []).map((name) => ({ name, from: null, fullName: pi.name }));
     for (const m of members || [])
-      for (const name of m.pub_names || []) out.push({ name, from: m.joined ? Number(m.joined) : null });
+      for (const name of m.pub_names || [])
+        out.push({ name, from: m.joined ? Number(m.joined) : null, fullName: m.name });
     return out;
   });
 
@@ -102,8 +121,14 @@ export default function (eleventyConfig) {
       .slice(0, 2)
       .join(""));
 
-  eleventyConfig.addFilter("searchText", (p) =>
-    [p.title, (p.authors || []).join(" "), p.journal, p.year, p.pmid, p.doi].join(" ").toLowerCase());
+  // Text the Publications search looks through. Lab members are also findable by
+  // their full name (e.g. "hyondeog"), not only by the citation form ("Kim H").
+  eleventyConfig.addFilter("searchText", (p, labNames) => {
+    const { fullNames } = labMatcher(labNames, p.year, p.unbold);
+    const members = (p.authors || []).flatMap(fullNames);
+    return [p.title, (p.authors || []).join(" "), members.join(" "), p.journal, p.year, p.pmid, p.doi]
+      .join(" ").toLowerCase();
+  });
 
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
 
