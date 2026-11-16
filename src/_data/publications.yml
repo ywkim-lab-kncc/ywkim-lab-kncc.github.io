@@ -15,7 +15,9 @@
 #    note       short label, e.g. "Cover article"
 #    code / data / pdf   optional URLs (GitHub repo, GEO accession, PDF)
 #  Author markers:  "Kim Y*" = equal contribution,  "Kim Y†" = corresponding author
-#  Lab members are bolded automatically (see pub_names in members.yml).
+#  Lab members are bolded automatically (see pub_names in members.yml), only in
+#  papers from the year they joined. To stop a name being bolded in one paper
+#  (e.g. a different person with the same initials), add:  unbold: ["Kim H"]
 #
 #  Seed list below: taken from the PI's NCC faculty page (ncc-gcsp.ac.kr).
 #  Entries marked "verify": run the PubMed action with these PMIDs and tick

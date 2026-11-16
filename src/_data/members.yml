@@ -17,7 +17,8 @@
 #    photo      optional; file in src/assets/img/people/  (e.g. "jdoe.jpg")
 #               square image, about 600×600 px. Without a photo, initials are shown.
 #    pub_names  how the name appears in author lists, e.g. ["Lee J", "Lee JW"]
-#               → these names are bolded automatically on the Publications page
+#               → these names are bolded automatically on the Publications page,
+#                 but only in papers from the `joined` year onward
 #    joined / left   year (number)
 #    now        alumni only — current position, e.g. "Postdoc, Stanford University"
 # ============================================================
