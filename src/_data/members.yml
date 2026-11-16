@@ -59,57 +59,47 @@ pi:
     #   url: "https://orcid.org/0000-0000-0000-0000"
 
 members:
-  # ---- EXAMPLES: replace these with real lab members --------
-  - id: example-postdoc
-    name: "Researcher Name"
+  # Entries below come from the member profile form (Google Forms).
+  - id: hdkim
+    name: "Hyondeog Kim"
     role: postdoc
     track: dry
     status: current
-    joined: 2025
+    joined: 2021
     photo: ""
-    pub_names: []
-    research: "Pan-cancer analysis of mitochondrial DNA variants"
-    email: ""
+    pub_names: ["Kim H"]
+    research: "Multi-omic landscape of cancers"
+    email: "hyondkim@ncc.re.kr"
 
-  - id: example-researcher
-    name: "Researcher Name"
+  - id: ymkim
+    name: "Yunmi Kim"
     role: researcher
-    track: wet
-    status: current
-    joined: 2023
-    photo: ""
-    pub_names: []
-    research: "Patient-derived cancer models and sample processing"
-    email: ""
-
-  - id: example-phd
-    name: "Student Name"
-    role: phd
-    track: wet
+    track: dry
     status: current
     joined: 2024
     photo: ""
-    pub_names: []
-    research: "Functional validation of metabolic dependencies in cancer cell lines"
-    email: ""
+    pub_names: ["Kim Y"]
+    research: "AI-driven immunogenicity prediction, drug discovery, and single-cell analysis"
+    email: "samkym9799@gmail.com"
 
-  - id: example-ms
-    name: "Student Name"
-    role: ms
+  - id: ssraj
+    name: "Sreeja Sundara Raj"
+    role: phd
+    track: dry
+    status: current
+    joined: 2022
+    photo: ""
+    pub_names: ["Sundara Raj S", "Raj SS"]
+    research: "Multi-omics characterization of rare sarcomas"
+    email: "sreejaraj@ncc.re.kr"
+
+  - id: dhkoh
+    name: "DooHyun Koh"
+    role: phd
     track: both
     status: current
-    joined: 2026
+    joined: 2025
     photo: ""
-    pub_names: []
-    research: "Single-cell transcriptomics of tumor samples"
-    email: ""
-
-  - id: example-alumnus
-    name: "Former Member"
-    role: ms
-    track: dry
-    status: alumni
-    joined: 2022
-    left: 2024
-    now: "Ph.D. student, Example University"
-    pub_names: []
+    pub_names: ["Koh D", "Koh DH"]
+    research: "Single-cell analysis of drug-tolerant persister cells in ovarian cancer"
+    email: "98010@ncc.re.kr"

@@ -22,6 +22,36 @@
 #  "Overwrite" to replace them with exact PubMed metadata.
 # ============================================================
 
+- title: "Comprehensive proteogenomic characterization reveals clinically relevant molecular subtypes associated with medulloblastoma progression"
+  authors: ["Park SM", "Kim KH", "Yoon JH", "D'Angelo F", "Choi SA", "Kim CI", "Koo H", "Park S", "Kim H", "Sundara Raj S", "Kim SS", "Park AK", "Koh EJ", "Kim SI", "Shim YM", "Lee KH", "Kim EE", "Phi JH", "Jo YS", "Nam DH", "Hwang D", "Hyeon DY", "Huh S", "Kwon HJ", "Ha S", "Park S", "Shin H", "Kwon JT", "Yoo H", "Gwak HS", "Taylor MD", "Park BJ", "Sa JK", "Kim Y", "Iavarone A", "Park SH", "Kim SK", "Park JB"]   # converted from full names — re-import PMID 42249086 with "Overwrite" for exact PubMed format
+  journal: "Experimental & Molecular Medicine"
+  year: 2026
+  volume: "58(6)"
+  pages: "1885-1899"
+  doi: "10.1038/s12276-026-01732-0"
+  pmid: "42249086"
+  type: article
+
+- title: "Integrative transcriptomic analysis of Korean high-grade serous ovarian cancer"
+  authors: ["Kim H", "Kim Y", "Park J", "Shin DM", "Kim JH", "Gunathilake M", "Kwon SY", "Shin J", "Yoo CW", "Park SY", "Lim MC", "Kim J"]
+  journal: "PLOS Genetics"
+  year: 2025
+  volume: "21(9)"
+  pages: "e1011660"
+  doi: "10.1371/journal.pgen.1011660"
+  pmid: "40953111"
+  type: article
+
+- title: "Proteogenomic characterization identifies clinical subgroups in EGFR and ALK wild-type never-smoker lung adenocarcinoma"
+  authors: ["Kim H", "Lee W", "Kim Y", "Lee SJ", "Choi W", "Lee GK", "Park SJ", "Ju S", "Kim SY", "Lee C", "Han JY"]
+  journal: "Experimental & Molecular Medicine"
+  year: 2024
+  volume: "56(9)"
+  pages: "2082-2095"
+  doi: "10.1038/s12276-024-01320-0"
+  pmid: "39300154"
+  type: article
+
 - title: "Analyses of non-coding somatic drivers in 2,658 cancer whole genomes"   # verify
   authors: ["Rheinbay E", "PCAWG Consortium"]                                       # verify
   journal: "Nature"
