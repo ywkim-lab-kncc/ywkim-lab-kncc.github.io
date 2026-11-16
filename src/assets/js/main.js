@@ -94,7 +94,7 @@
     );
   }
 
-  // Publications: search + "selected only"
+  // Publications: search
   const search = document.getElementById("pub-search");
   if (search) {
     const selected = document.getElementById("pub-selected");
@@ -109,7 +109,7 @@
         let n = 0;
         y.querySelectorAll(".pub").forEach((p) => {
           const text = p.dataset.search;
-          const ok = terms.every((t) => text.includes(t)) && (!selected.checked || p.dataset.selected === "true");
+          const ok = terms.every((t) => text.includes(t)) && (!selected || !selected.checked || p.dataset.selected === "true");
           p.hidden = !ok;
           if (ok) n++;
         });
@@ -120,6 +120,6 @@
       empty.hidden = shown > 0;
     };
     search.addEventListener("input", run);
-    selected.addEventListener("change", run);
+    if (selected) selected.addEventListener("change", run);
   }
 })();
