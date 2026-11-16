@@ -34,6 +34,34 @@
     illus.forEach((el) => el.classList.add("is-playing"));
   }
 
+  // Copy-to-clipboard buttons (e.g. email address on the Join us page)
+  document.querySelectorAll(".copy-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const text = btn.dataset.copy;
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(text);
+        ok = true;
+      } catch (e) {
+        // fallback for older browsers / restricted frames
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand("copy"); } catch (e2) { ok = false; }
+        ta.remove();
+      }
+      const msg = btn.querySelector(".copy-msg");
+      if (msg) msg.textContent = ok ? "Copied" : "Copy failed";
+      btn.classList.add("copied");
+      clearTimeout(btn._t);
+      btn._t = setTimeout(() => btn.classList.remove("copied"), 1600);
+    });
+  });
+
   // People: Dry / Wet filter
   const filterButtons = document.querySelectorAll(".filter button");
   if (filterButtons.length) {
