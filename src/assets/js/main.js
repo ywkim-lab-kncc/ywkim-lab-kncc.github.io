@@ -22,16 +22,20 @@
     });
   }
 
-  // Animated illustrations play only while visible (saves battery on phones)
+  // Animated illustrations: start playing right away, then pause the ones that are
+  // off screen to save battery. The visibility check watches each picture's HTML
+  // wrapper (some mobile browsers don't report visibility for SVG elements).
   const illus = document.querySelectorAll(".illus");
+  illus.forEach((el) => el.classList.add("is-playing"));
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.target.classList.toggle("is-playing", e.isIntersecting)),
-      { threshold: 0.25 }
+      (entries) => entries.forEach((e) => {
+        const svg = e.target.matches(".illus") ? e.target : e.target.querySelector(".illus");
+        if (svg) svg.classList.toggle("is-playing", e.isIntersecting);
+      }),
+      { threshold: 0, rootMargin: "100px 0px" }
     );
-    illus.forEach((el) => io.observe(el));
-  } else {
-    illus.forEach((el) => el.classList.add("is-playing"));
+    illus.forEach((el) => io.observe(el.parentElement || el));
   }
 
   // Copy-to-clipboard buttons (e.g. email address on the Join us page)
