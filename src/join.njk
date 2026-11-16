@@ -10,31 +10,58 @@ permalink: join.html
   </div>
 </div>
 
+{#- 1. Open positions — one card per open position (join.yml) -#}
 <section class="section section-flush">
-  <div class="wrap two-col">
-    <div>
-      <h2>Open positions</h2>
-      <ul class="positions">
-        {%- for p in join.positions %}{% if p.open %}
-        <li>
-          <h3>{{ p.title }}</h3>
-          <p>{{ p.text }}</p>
-        </li>
-        {%- endif %}{% endfor %}
-      </ul>
-      <h2>How to apply</h2>
-      <p>{{ join.how_to_apply }}</p>
+  <div class="wrap">
+    <h2>Open positions</h2>
+    <ul class="positions">
+      {%- for p in join.positions %}{% if p.open %}
+      <li>
+        <h3>{{ p.title }}</h3>
+        <p>{{ p.text }}</p>
+      </li>
+      {%- endif %}{% endfor %}
+    </ul>
+  </div>
+</section>
+
+{#- 2. How to apply — PI name and email button with copy -#}
+<section class="section section-flush">
+  <div class="wrap">
+    <div class="apply-panel">
+      <div class="apply-text">
+        <h2>How to apply</h2>
+        <p>{{ join.how_to_apply }}</p>
+      </div>
+      <div class="apply-contact">
+        <p class="apply-name">{{ members.pi.name }}</p>
+        <div class="email-combo">
+          <a class="email-combo-link" href="mailto:{{ site.contact.email }}?subject=Application%20to%20{{ site.short_name | urlencode }}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>
+            {{ site.contact.email }}
+          </a>
+          <button type="button" class="copy-btn" data-copy="{{ site.contact.email }}" aria-label="Copy email address" title="Copy email address"><svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="copy-msg" aria-live="polite"></span></button>
+        </div>
+        {%- if site.contact.phone %}<p class="apply-phone">{{ site.contact.phone }}</p>{% endif %}
+      </div>
     </div>
-    <div class="contact-card">
-      <h2>Contact</h2>
+  </div>
+</section>
+
+{#- 3. Location — address and map -#}
+{%- set mapQuery = site.contact.map_query or (site.contact.address | join(", ")) %}
+<section class="section location-section">
+  <div class="wrap location">
+    <div class="location-text">
+      <h2>Location</h2>
       <address>
-        {{ members.pi.name }}<br>
         {%- if site.contact.office %}{{ site.contact.office }}<br>{% endif %}
-        {%- for line in site.contact.address %}{{ line }}<br>{% endfor %}
+        {%- for line in site.contact.address %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}
       </address>
-      <p class="email-row"><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a><button type="button" class="copy-btn" data-copy="{{ site.contact.email }}" aria-label="Copy email address" title="Copy email address"><svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg><svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="copy-msg" aria-live="polite"></span></button></p>
-      {%- if site.contact.phone %}<p>{{ site.contact.phone }}</p>{% endif %}
       <p><a href="{{ site.contact.map_url }}" rel="noopener">Open in Google Maps</a></p>
+    </div>
+    <div class="map-frame">
+      <iframe title="Map of {{ site.institution }}" src="https://maps.google.com/maps?q={{ mapQuery | urlencode }}&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>
   </div>
 </section>
