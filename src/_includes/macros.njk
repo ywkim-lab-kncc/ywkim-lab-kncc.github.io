@@ -15,7 +15,7 @@
 {%- endmacro -%}
 
 {%- macro pubItem(p, labNames) -%}
-<li class="pub" data-search="{{ p | searchText }}" data-selected="{{ 'true' if p.selected else 'false' }}">
+<li class="pub" data-search="{{ p | searchText(labNames) }}" data-selected="{{ 'true' if p.selected else 'false' }}">
   <p class="pub-title">
     {%- if p.doi %}<a href="https://doi.org/{{ p.doi }}" rel="noopener">{{ p.title }}</a>
     {%- elif p.pmid %}<a href="https://pubmed.ncbi.nlm.nih.gov/{{ p.pmid }}/" rel="noopener">{{ p.title }}</a>
