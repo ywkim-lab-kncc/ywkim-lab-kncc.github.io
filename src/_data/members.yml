@@ -9,10 +9,12 @@
 #  Fields
 #    id         unique, lowercase, no spaces (used for the photo file name)
 #    name       full name as it should appear
-#    role       one of: postdoc | researcher | phd | integrated | ms | intern   (see roles.yml)
-#               postdoc and researcher are listed together under "Researchers";
-#               postdocs get a "Postdoc" label automatically.
-#    track      one of: dry | wet | both     (Dry lab / Wet lab badge + filter)
+#    role       one of: research-assistant-professor | postdoc | researcher | phd |
+#               integrated | ms | intern | admin   (see roles.yml)
+#               The first three are listed together under "Researchers";
+#               research assistant professors and postdocs get a label automatically.
+#    track      one of: dry | wet | both | none   (Dry lab / Wet lab badge + filter;
+#               none = no badge, e.g. administrative staff)
 #    status     current | alumni
 #    photo      optional; file in src/assets/img/people/  (e.g. "jdoe.jpg")
 #               square image, about 600×600 px. Without a photo, initials are shown.
@@ -126,3 +128,13 @@ members:
     pub_names: ["Koh D", "Koh DH"]
     research: "Single-cell analysis of drug-tolerant persister cells in ovarian cancer"
     email: "98010@ncc.re.kr"
+
+  - id: myseok
+    name: "Minyoung Seok"            # ← please confirm English spelling of 석민영
+    role: admin
+    track: none                      # no Dry/Wet badge
+    status: current
+    photo: ""
+    pub_names: []
+    research: "Accounting and administrative approvals"
+    email: ""

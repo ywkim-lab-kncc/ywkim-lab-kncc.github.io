@@ -9,10 +9,10 @@
 #  To add a new kind of position, add an entry and use its key as `role:`.
 # ============================================================
 
-- key: assistant-professor   # e.g. research assistant professors in the lab (choose "Researcher" in the form)
+- key: research-assistant-professor   # choose "Researcher" in the form
   group: "Researchers"
-  one: "Assistant Professor"
-  tag: "Assistant Professor"
+  one: "Research Assistant Professor"
+  tag: "Research Assistant Professor"
 
 - key: postdoc
   group: "Researchers"
@@ -38,3 +38,7 @@
 - key: intern
   group: "Interns"
   one: "Intern"
+
+- key: admin               # accounting, purchasing, internal approvals, lab management
+  group: "Administrative staff"
+  one: "Administrative staff"
