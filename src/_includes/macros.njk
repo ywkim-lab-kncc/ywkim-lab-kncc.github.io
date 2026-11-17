@@ -3,7 +3,7 @@
 {%- endmacro -%}
 
 {%- macro trackBadge(track) -%}
-<span class="track track-{{ track or 'both' }}">{{ trackLabel(track) }}</span>
+{%- if track != "none" %}<span class="track track-{{ track or 'both' }}">{{ trackLabel(track) }}</span>{% endif -%}
 {%- endmacro -%}
 
 {%- macro avatar(person, cls="") -%}
