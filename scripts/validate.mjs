@@ -23,7 +23,8 @@ function load(name) {
   }
 }
 
-const TRACKS = ["dry", "wet", "both"];
+const TRACKS = ["dry", "wet", "both"];          // research themes
+const MEMBER_TRACKS = [...TRACKS, "none"];        // members (none = no badge)
 const STATUSES = ["current", "alumni"];
 
 // ---- roles + members ----
@@ -50,7 +51,7 @@ if (people) {
     seen.add(m.id);
     if (!m.name) err("members.yml", `${who}: name 이 없습니다.`);
     if (!roleKeys.includes(m.role)) err("members.yml", `${who}: role "${m.role}" 은(는) roles.yml 에 없습니다. 가능한 값: ${roleKeys.join(", ")}`);
-    if (m.track && !TRACKS.includes(m.track)) err("members.yml", `${who}: track 은 ${TRACKS.join(" | ")} 중 하나여야 합니다.`);
+    if (m.track && !MEMBER_TRACKS.includes(m.track)) err("members.yml", `${who}: track 은 ${MEMBER_TRACKS.join(" | ")} 중 하나여야 합니다.`);
     if (m.status && !STATUSES.includes(m.status)) err("members.yml", `${who}: status 는 current | alumni 중 하나여야 합니다.`);
     if (m.photo && !fs.existsSync(path.join(PHOTOS, m.photo))) err("members.yml", `${who}: 사진 파일이 없습니다: ${PHOTOS}/${m.photo} (파일명 대소문자도 확인)`);
     if (m.pub_names && !Array.isArray(m.pub_names)) err("members.yml", `${who}: pub_names 는 ["Lee J", "Lee JW"] 처럼 목록이어야 합니다.`);
