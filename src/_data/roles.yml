@@ -5,14 +5,15 @@
 #  group = heading the member is listed under. Roles with the same group
 #          appear together in one list, in the order written here.
 #  one   = singular name (used in the alumni table)
-#  tag   = optional small label shown next to the name (e.g. "Postdoc")
+#  tag   = optional small label shown in a box under the name (e.g. "Postdoc").
+#          Keep it short; use an abbreviation for long titles.
 #  To add a new kind of position, add an entry and use its key as `role:`.
 # ============================================================
 
 - key: research-assistant-professor   # choose "Researcher" in the form
   group: "Researchers"
-  one: "Research Assistant Professor"
-  tag: "Research Assistant Professor"
+  one: "Research Assistant Professor"     # full title (shown on hover and in the alumni table)
+  tag: "Research Asst. Prof."             # short label shown in the box under the name
 
 - key: postdoc
   group: "Researchers"

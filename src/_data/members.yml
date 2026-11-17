@@ -69,7 +69,7 @@ members:
     track: dry
     status: current
     joined: 2023
-    photo: ""
+    photo: "jkhanal.jpg"
     pub_names: ["Khanal J"]
     research: "Bioinformatics, deep learning, and cancer genomics"
     email: ""
@@ -80,7 +80,7 @@ members:
     track: dry
     status: current
     joined: 2021
-    photo: ""
+    photo: "hdkim.jpg"
     pub_names: ["Kim H"]
     research: "Multi-omic landscape of cancers"
     email: "hyondkim@ncc.re.kr"
@@ -91,10 +91,21 @@ members:
     track: dry
     status: current
     joined: 2024
-    photo: ""
+    photo: "ymkim.jpg"
     pub_names: ["Kim Y"]
     research: "AI-driven immunogenicity prediction, drug discovery, and single-cell analysis"
     email: "samkym9799@gmail.com"
+
+  - id: ssraj
+    name: "Sreeja Sundara Raj"
+    role: phd
+    track: dry
+    status: current
+    joined: 2022
+    photo: "ssraj.jpg"
+    pub_names: ["Sundara Raj S", "Raj SS"]
+    research: "Multi-omics characterization of rare sarcomas"
+    email: "sreejaraj@ncc.re.kr"
 
   - id: hmahn
     name: "Hyung-Min Ahn"
@@ -107,24 +118,13 @@ members:
     research: "Evolution of acquired resistance in cancer and functional genomics of mitochondrial DNA"
     email: "bromynn@ncc.re.kr"
 
-  - id: ssraj
-    name: "Sreeja Sundara Raj"
-    role: phd
-    track: dry
-    status: current
-    joined: 2022
-    photo: ""
-    pub_names: ["Sundara Raj S", "Raj SS"]
-    research: "Multi-omics characterization of rare sarcomas"
-    email: "sreejaraj@ncc.re.kr"
-
   - id: dhkoh
     name: "DooHyun Koh"
     role: phd
     track: both
     status: current
     joined: 2025
-    photo: ""
+    photo: "dhkoh.jpg"
     pub_names: ["Koh D", "Koh DH"]
     research: "Single-cell analysis of drug-tolerant persister cells in ovarian cancer"
     email: "98010@ncc.re.kr"
@@ -137,4 +137,4 @@ members:
     photo: ""
     pub_names: []
     research: "Accounting and administrative approvals"
-    email: ""
+    email: "77844@ncc.re.kr"

@@ -91,7 +91,8 @@ permalink: people.html
         <li class="member" data-track="{{ p.track or 'both' }}">
           {{ m.avatar(p) }}
           <div>
-            <h3>{{ p.name }}{% if p.roleInfo.tag %} <span class="role-tag">{{ p.roleInfo.tag }}</span>{% endif %}</h3>
+            <h3>{{ p.name }}</h3>
+            {%- if p.roleInfo.tag %}<p class="role-line"><span class="role-tag" title="{{ p.roleInfo.one }}">{{ p.roleInfo.tag }}</span></p>{% endif %}
             {{ m.trackBadge(p.track) }}
             {%- if p.research %}<p class="member-research">{{ p.research }}</p>{% endif %}
             {%- if p.email %}<p class="member-contact"><a href="mailto:{{ p.email }}">{{ p.email }}</a></p>{% endif %}

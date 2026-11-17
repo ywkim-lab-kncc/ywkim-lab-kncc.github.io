@@ -213,6 +213,7 @@ address { font-style: normal; }
 @media (max-width: 44rem) { .group-photo-placeholder { aspect-ratio: 4 / 3; } }
 
 .avatar { width: 7.5rem; height: 7.5rem; border-radius: 50%; object-fit: cover; background: var(--line); flex: none; }
+img.avatar { box-shadow: 0 0 0 1px var(--line); }   /* thin ring so white-background photos keep their round edge */
 .avatar-lg { width: 13rem; height: 13rem; }
 .avatar-initials { display: grid; place-items: center; font-weight: 700; font-size: 1.6rem; color: var(--navy); background: var(--navy-soft); }
 .avatar-lg.avatar-initials { font-size: 3rem; }
@@ -245,7 +246,8 @@ address { font-style: normal; }
 .member-group + .member-group { margin-top: 2.5rem; }
 .member-group h2 { font-size: var(--step-1); color: var(--muted); font-weight: 600; margin-bottom: 1rem; display: flex; align-items: baseline; gap: 0.5rem; }
 .member-count { font-size: var(--step--1); font-weight: 600; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0 0.55rem; font-variant-numeric: tabular-nums; }
-.role-tag { display: inline-block; vertical-align: 0.15em; margin-left: 0.3rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.02em; color: #fff; background: var(--navy); border-radius: 3px; padding: 0.05rem 0.4rem; }
+.role-line { margin: -0.15rem 0 0.45rem; line-height: 1; }   /* label box on its own line under the name */
+.role-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.02em; line-height: 1.5; color: #fff; background: var(--navy); border-radius: 3px; padding: 0.05rem 0.4rem; white-space: nowrap; }
 .member-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.75rem var(--gap); }
 .member { display: flex; gap: 1rem; align-items: flex-start; }
 .member .avatar { width: 5.5rem; height: 5.5rem; font-size: 1.3rem; }
