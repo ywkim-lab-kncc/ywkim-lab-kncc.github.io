@@ -63,7 +63,7 @@ members:
   # Entries below come from the member profile form (Google Forms).
   - id: jkhanal
     name: "Jhabindra Khanal"
-    role: assistant-professor
+    role: research-assistant-professor
     track: dry
     status: current
     joined: 2023
@@ -96,7 +96,7 @@ members:
 
   - id: hmahn
     name: "Hyung-Min Ahn"
-    role: researcher
+    role: phd
     track: dry
     status: current
     joined: 2025
